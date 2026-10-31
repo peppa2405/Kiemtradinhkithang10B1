@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Tháng 10 - Tiếng Anh Lớp 8 Chuyên</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --bg: #f8f9fa;
+            --danger: #e74c3c;
+            --border: #dee2e6;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg);
+            color: #333;
+            margin: 0; padding: 0;
+            /* Chống copy/bôi đen */
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 15px 20px;
+            border-bottom: 3px solid var(--secondary);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .timer { font-size: 1.8em; font-weight: bold; color: var(--secondary); }
+        .timer.danger { color: var(--danger); animation: blink 1s infinite; }
+        .strikes { font-weight: bold; color: var(--danger); }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        h1, h2, h3 { color: var(--primary); }
+        h1 { text-align: center; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+        
+        .rules {
+            background: #fff3cd; color: #856404;
+            padding: 15px; border-left: 4px solid #ffeeba;
+            margin-bottom: 25px; border-radius: 4px;
+        }
+
+        .question { margin-bottom: 15px; }
+        .question b { display: block; margin-bottom: 8px; font-size: 1.05em; }
+        .options { display: flex; flex-wrap: wrap; gap: 15px; }
+        .options label {
+            background: #f1f3f5; padding: 8px 15px;
+            border-radius: 5px; cursor: pointer;
+            border: 1px solid var(--border); transition: 0.2s;
+        }
+        .options label:hover { background: #e9ecef; border-color: var(--secondary); }
+        .options input[type="radio"] { margin-right: 5px; }
+
+        .passage {
+            background: #f8f9fa; padding: 20px;
+            border-left: 4px solid var(--secondary);
+            line-height: 1.8; margin-bottom: 20px; border-radius: 5px;
+        }
+
+        input[type="text"] {
+            padding: 6px 12px; border: 1px solid #ccc;
+            border-radius: 4px; font-family: inherit; font-size: 1em;
+            width: 250px;
+        }
+        input[type="text"]:focus { outline: none; border-color: var(--secondary); }
+        
+        .write-input { width: 100%; max-width: 600px; margin-top: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        table, th, td { border: 1px solid var(--border); }
+        th, td { padding: 10px; text-align: left; }
+
+        .btn-submit {
+            background: var(--secondary); color: #fff;
+            border: none; padding: 15px 30px; font-size: 1.2em;
+            font-weight: bold; border-radius: 5px; cursor: pointer;
+            width: 100%; margin-top: 30px; transition: 0.3s;
+        }
+        .btn-submit:hover { background: #2980b9; }
+
+        /* Khóa màn hình */
+        .overlay {
+            display: none; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9); z-index: 9999;
+            justify-content: center; align-items: center; text-align: center;
+        }
+        .overlay-content {
+            background: #fff; padding: 40px; border-radius: 10px; max-width: 500px;
+        }
+        .score-big { font-size: 3em; font-weight: bold; color: var(--secondary); margin: 20px 0; }
+        .locked-title { color: var(--danger); font-size: 2em; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="header-sticky">
+    <div class="timer" id="timer">100:00</div>
+    <div class="strikes" id="strike-counter">Cảnh báo thoát tab: 0/3</div>
+</div>
+
+<div class="container" id="exam-content">
+    <h1>BÀI KIỂM TRA THÁNG 10 - TIẾNG ANH 8 CHUYÊN</h1>
+    <div class="rules">
+        <strong>⚠️ NỘI QUY PHÒNG THI ONLINE:</strong>
+        <ul style="margin: 5px 0 0 0;">
+            <li>Thời gian: <b>100 phút</b>. Tổng điểm: <b>100 điểm</b>.</li>
+            <li>Hệ thống <b>cấm copy/paste</b> và <b>chuột phải</b>.</li>
+            <li><b>TUYỆT ĐỐI KHÔNG CHUYỂN TAB HAY THU NHỎ TRÌNH DUYỆT.</b> Vi phạm 3 lần sẽ lập tức bị HỦY BÀI VÀ KHÓA ĐỀ.</li>
+        </ul>
+    </div>
+
+    <form id="quiz-form">
+        <!-- ================= SECTION I ================= -->
+        <h2>SECTION I. GRAMMAR AND LEXICAL ITEMS (45 points)</h2>
+        
+        <h3>Part 1. Choose the correct answer A, B, C or D. (25 pts)</h3>
+        <div id="s1p1-container"></div> <!-- Đổ JS vào đây cho gọn -->
+
+        <h3>Part 2. Complete the passage with the correct form of the words in capitals. (10 pts)</h3>
+        <div class="passage">
+            <b>THE SCHOOL SPORTS FESTIVAL</b><br>
+            Every October, our school holds a sports festival that is popular with students of all ages. There are many (26) ATHLETE <input type="text" name="s1p2_26"> events, such as running and jumping, and the most (27) SUCCESS <input type="text" name="s1p2_27"> classes receive a cup. Between the matches, there is also (28) ENTERTAIN <input type="text" name="s1p2_28"> for everyone: a (29) MUSIC <input type="text" name="s1p2_29"> group plays folk songs, and some (30) CHILD <input type="text" name="s1p2_30"> from the primary school perform a short play. The (31) ORGANISE <input type="text" name="s1p2_31"> say that the best part is the teamwork. Our captain, Nam, is a really (32) PLAY <input type="text" name="s1p2_32"> boy who always makes his teammates laugh, but he trains very (33) SERIOUS <input type="text" name="s1p2_33">. Last year he scored the winning goal, and everyone still talks about his (34) HERO <input type="text" name="s1p2_34"> effort. We hope this year's festival will be even more (35) EXCITE <input type="text" name="s1p2_35">.
+        </div>
+
+        <h3>Part 3. Match the words in column A with the phrases in column B, then use the FULL PHRASES (in the correct form) to fill the gaps. (10 pts)</h3>
+        <table>
+            <tr><th>A</th><th>B</th></tr>
+            <tr>
+                <td>take, make, do, learn, hand, catch, look, drop, set, check</td>
+                <td>A. an exam<br>B. progress<br>C. research<br>D. the poem by heart<br>E. in the homework<br>F. up with the others<br>G. up the word in a dictionary<br>H. out of school<br>I. off at dawn<br>J. in at the hotel</td>
+            </tr>
+        </table>
+        <div class="question">36. All Grade 8 students will <input type="text" name="s1p3_36" placeholder="type full phrase here"> in English next Friday.</div>
+        <div class="question">37. She has <input type="text" name="s1p3_37"> in her speaking skills since she joined the club.</div>
+        <div class="question">38. Dr Lan has <input type="text" name="s1p3_38"> on climate change for ten years.</div>
+        <div class="question">39. Tom <input type="text" name="s1p3_39"> last night, so now he can recite the whole thing without a book.</div>
+        <div class="question">40. Please <input type="text" name="s1p3_40"> before the deadline, or you will lose marks.</div>
+        <div class="question">41. He was ill for two weeks, so he had to work hard to <input type="text" name="s1p3_41">.</div>
+        <div class="question">42. I don't know what "rhythm" means. I'll <input type="text" name="s1p3_42">.</div>
+        <div class="question">43. He decided to <input type="text" name="s1p3_43"> at fifteen to help his family.</div>
+        <div class="question">44. We <input type="text" name="s1p3_44"> to avoid the heavy traffic.</div>
+        <div class="question">45. As soon as we arrived, we <input type="text" name="s1p3_45"> and went to our room.</div>
+
+        <!-- ================= SECTION II ================= -->
+        <h2>SECTION II. READING (40 points)</h2>
+        
+        <h3>Part 1. Read the passage and choose the answer A, B, C or D. (10 pts)</h3>
+        <div class="passage">
+            <b>A TRIP TO REMEMBER</b><br>
+            Last summer my family went on a (1) ______ to Da Nang. We (2) ______ off early in the morning because we wanted to avoid the traffic. At the airport, we (3) ______ in and left our (4) ______ at the desk. The flight was (5) ______ for an hour, so we had breakfast in a cafe. At last the plane (6) ______ off, and after a short (7) ______ we landed. A taxi was waiting to (8) ______ us up and take us to our (9) ______ by the beach. During the week, we went (10) ______ and visited many famous places.
+        </div>
+        <div id="s2p1-container"></div>
+
+        <h3>Part 2. Think of the word which best fits each gap. Use only ONE word. (10 pts)</h3>
+        <div class="passage">
+            <b>THE CHESS CLUB</b><br>
+            My sister Hoa has been crazy (11) <input type="text" name="s2p2_11" style="width:100px"> chess for two years. She took (12) <input type="text" name="s2p2_12" style="width:100px"> the game after watching (13) <input type="text" name="s2p2_13" style="width:100px"> film about a young champion, and now she plays for the school club. (14) <input type="text" name="s2p2_14" style="width:100px"> club has about twenty members, and they meet twice (15) <input type="text" name="s2p2_15" style="width:100px"> week. Hoa is very good (16) <input type="text" name="s2p2_16" style="width:100px"> the game, but she sometimes makes a mistake when she plays against a strong opponent. If she loses, she never gives up; she tries (17) <input type="text" name="s2p2_17" style="width:100px"> game immediately, and she always shakes hands with her opponent. The members of the club help (18) <input type="text" name="s2p2_18" style="width:100px"> other a lot: when some of them cannot solve a problem, (19) <input type="text" name="s2p2_19" style="width:100px"> show the right move. Next month, they will take part (20) <input type="text" name="s2p2_20" style="width:100px"> a city competition, and everybody hopes that Hoa will win.
+        </div>
+
+        <h3>Part 3. Read the passage and do the tasks that follow. (10 pts)</h3>
+        <div class="passage">
+            <b>WHY DO WE PLAY?</b><br>
+            <b>A</b> People have always played games. Archaeologists have found board games in ancient tombs that are more than five thousand years old, which shows that our ancestors enjoyed the same kind of pleasure we do today. Some of these games were played with dice, others with stones moved on a wooden board.<br><br>
+            <b>B</b> Games are also a good way to learn. Children who play board games practise counting, planning and taking turns, while video games can improve quick thinking. Teachers sometimes ask students to play a game in class because it helps them remember new words, and nobody feels bored.<br><br>
+            <b>C</b> Team sports teach different lessons. When players train together, they learn to support one another and to respect the referee's decisions, even if they lose. A good captain encourages the whole team, and a good coach knows that taking part is as important as winning.<br><br>
+            <b>D</b> However, games can also cause problems. Some people spend too many hours on screens and give up other activities, such as sports or reading. Others cheat in order to win, which spoils the fun for everyone. Experts advise players to set a time limit and to remember that a game should be played for fun.<br><br>
+            <b>E</b> In the future, games will probably become even more popular. New technology already allows players on different continents to compete against each other in real time, and more schools are starting clubs where students can try new games. Whatever the style, the pleasure of playing remains the same.
+        </div>
+        
+        <b>Match the headings (i-vii) to paragraphs A-E. (There are two extra headings)</b>
+        <p>i. Lessons from working together | ii. A long history | iii. The dangers of too much play | iv. Games for exercising the body | v. Learning while having fun | vi. What lies ahead | vii. Famous champions in history</p>
+        21. Paragraph A: <input type="text" name="s2p3_21" style="width:60px"> &nbsp;
+        22. Paragraph B: <input type="text" name="s2p3_22" style="width:60px"> &nbsp;
+        23. Paragraph C: <input type="text" name="s2p3_23" style="width:60px"> &nbsp;
+        24. Paragraph D: <input type="text" name="s2p3_24" style="width:60px"> &nbsp;
+        25. Paragraph E: <input type="text" name="s2p3_25" style="width:60px"> <br><br>
+
+        <b>Decide whether the statements are True (T), False (F) or Not Given (NG).</b><br>
+        26. All the ancient games were played with dice. <input type="text" name="s2p3_26" style="width:60px"><br>
+        27. Teachers sometimes use games to help students remember vocabulary. <input type="text" name="s2p3_27" style="width:60px"><br>
+        28. Video games are more useful than board games for children. <input type="text" name="s2p3_28" style="width:60px"><br>
+        29. A good coach thinks that winning is more important than taking part. <input type="text" name="s2p3_29" style="width:60px"><br>
+        30. Experts advise players to limit the time they spend on games. <input type="text" name="s2p3_30" style="width:60px"><br>
+
+        <h3>Part 4. Multi-matching. Which person... (Type A, B, C or D) (10 pts)</h3>
+        <div class="passage">
+            <b>HOW I GET TO SCHOOL</b><br>
+            <b>A. Minh:</b> I live right in the middle of the city, so I go to school on foot. It takes only ten minutes, so I'm never late. On the way, I pass a small park where old men play chess, and last week I joined in a game with them. I lost badly, but I had a lot of fun. My mother says I should take up a sport, but I'm not keen on running.<br><br>
+            <b>B. Lan:</b> My school is twenty kilometres from my village, so I go by bus. The journey takes an hour, and I use the time to listen to music. Sometimes the bus is delayed, and I turn up late for the first lesson, which my teacher really dislikes. I don't mind the trip, though, because I've made friends with a group of girls who travel on the same route.<br><br>
+            <b>C. Tuan:</b> My father drops me off at school on his motorbike every morning. We set off at six thirty to avoid the traffic, and on the way we talk about football. He's a big fan of Hanoi FC, and sometimes he gets tickets, so we go to games together. I'd like to cycle to school, but my parents think the roads are too dangerous.<br><br>
+            <b>D. Hoa:</b> I take the train to school because the station is near my house. I get on at seven o'clock and get off thirty minutes later, so I can look up words for English class on the way. Last month, I had to hand in an essay, and I finished it on the train. The only problem is that the train is crowded, and I often have to stand.
+        </div>
+        31. joined in a game with older people? <input type="text" name="s2p4_31" style="width:50px"><br>
+        32. completed a written task while travelling? <input type="text" name="s2p4_32" style="width:50px"><br>
+        33. is sometimes late because of a transport problem? <input type="text" name="s2p4_33" style="width:50px"><br>
+        34. would prefer a different way of getting to school? <input type="text" name="s2p4_34" style="width:50px"><br>
+        35. has made friends during the journey? <input type="text" name="s2p4_35" style="width:50px"><br>
+        36. shares an interest with a parent? <input type="text" name="s2p4_36" style="width:50px"><br>
+        37. does not use any transport? <input type="text" name="s2p4_37" style="width:50px"><br>
+        38. complains that the journey is uncomfortable? <input type="text" name="s2p4_38" style="width:50px"><br>
+        39. is encouraged by a parent to try a sport? <input type="text" name="s2p4_39" style="width:50px"><br>
+        40. studies English on the way to school? <input type="text" name="s2p4_40" style="width:50px"><br>
+
+        <!-- ================= SECTION III ================= -->
+        <h2>SECTION III. WRITING (15 points - 1.5 pts/each)</h2>
+        <i>Lưu ý: Hệ thống chấm tự động theo đáp án chuẩn mực. Bạn có thể được giáo viên chấm vớt điểm nếu lỗi sai chính tả/ngữ pháp cực nhỏ (0.75đ).</i>
+        
+        <h3>Part 1. Rewrite each sentence. (7.5 pts)</h3>
+        <div class="question">
+            1. Hoa gave her notebook to Nam, and Nam gave his notebook to Hoa.<br>
+            Hoa and Nam <input type="text" name="s3p1_1" class="write-input">.
+        </div>
+        <div class="question">
+            2. The referee made the player leave the field after the foul.<br>
+            The referee <input type="text" name="s3p1_2" class="write-input">.
+        </div>
+        <div class="question">
+            3. The referee read the rules wrongly, so the team lost.<br>
+            The referee <input type="text" name="s3p1_3" class="write-input">.
+        </div>
+        <div class="question">
+            4. She was not able to finish the assignment before the deadline.<br>
+            She was <input type="text" name="s3p1_4" class="write-input">.
+        </div>
+        <div class="question">
+            5. There are three students in the room. Two are boys and the third is a girl.<br>
+            Two of the students are boys and <input type="text" name="s3p1_5" class="write-input">.
+        </div>
+
+        <h3>Part 2. Complete the second sentence using the word in CAPITALS. (7.5 pts)</h3>
+        <div class="question">
+            6. I'm very interested in classical music. (KEEN)<br>
+            I <input type="text" name="s3p2_6" class="write-input" style="width: 250px;"> classical music.
+        </div>
+        <div class="question">
+            7. Our teacher told us to submit the assignment by Friday. (HAND)<br>
+            Our teacher told us to <input type="text" name="s3p2_7" class="write-input" style="width: 250px;"> by Friday.
+        </div>
+        <div class="question">
+            8. Over two hundred students joined the sports festival. (PART)<br>
+            Over two hundred students <input type="text" name="s3p2_8" class="write-input" style="width: 250px;"> the sports festival.
+        </div>
+        <div class="question">
+            9. We got to the station before the train left. (TIME)<br>
+            We got to the station <input type="text" name="s3p2_9" class="write-input" style="width: 250px;"> the train.
+        </div>
+        <div class="question">
+            10. Could you make the music quieter, please? (DOWN)<br>
+            Could you <input type="text" name="s3p2_10" class="write-input" style="width: 250px;">, please?
+        </div>
+
+        <button type="button" class="btn-submit" onclick="submitExam(false)">NỘP BÀI TỰ NGUYỆN</button>
+    </form>
+</div>
+
+<!-- OVERLAY BÁO KẾT QUẢ / KHÓA THI -->
+<div class="overlay" id="overlay">
+    <div class="overlay-content">
+        <h2 id="end-title">KẾT QUẢ BÀI THI</h2>
+        <div class="score-big" id="final-score">0 / 100</div>
+        <p id="end-message">Bài làm của bạn đã được ghi nhận.</p>
+    </div>
+</div>
+
+<script>
+    // --- Data Rendering ---
+    const s1p1Data = [
+        { q: "1. Choose the word whose stress pattern is different.", opts: ["A. concert", "B. captain", "C. challenge", "D. referee"] },
+        { q: "2. Choose the word whose stress pattern is different.", opts: ["A. opponent", "B. rhythm", "C. champion", "D. organise"] },
+        { q: "3. Choose the word whose main stress is on the SECOND syllable.", opts: ["A. journey", "B. departure", "C. luggage", "D. passenger"] },
+        { q: "4. Choose the word whose stress pattern is different.", opts: ["A. entertainment", "B. musician", "C. collection", "D. athletic"] },
+        { q: "5. Choose the word whose stress pattern is different.", opts: ["A. bedroom", "B. homework", "C. old-fashioned", "D. football"] },
+        { q: "6. He has been ______ since his injury; he doesn't do any sport.", opts: ["A. inactive", "B. unactive", "C. disactive", "D. nonactive"] },
+        { q: "7. A player who cheats in a game is ______.", opts: ["A. unhonest", "B. inhonest", "C. dishonest", "D. nonhonest"] },
+        { q: "8. I ______ the time, so I turned up late for the concert.", opts: ["A. unread", "B. misread", "C. disread", "D. inread"] },
+        { q: "9. She plays the violin in the school orchestra and wants to be a professional ______.", opts: ["A. music", "B. musical", "C. musician", "D. musically"] },
+        { q: "10. The ______ of the festival took the committee six months.", opts: ["A. organise", "B. organised", "C. organiser", "D. organisation"] },
+        { q: "11. The film was so ______ that we didn't want to leave the cinema.", opts: ["A. entertainment", "B. entertaining", "C. entertained", "D. entertainer"] },
+        { q: "12. My brother is ______ athlete; he runs ten kilometres every day.", opts: ["A. a", "B. an", "C. the", "D. no article"] },
+        { q: "13. I bought a video game yesterday. ______ game is very exciting.", opts: ["A. A", "B. An", "C. The", "D. No article"] },
+        { q: "14. Mai plays ______ violin in the school orchestra.", opts: ["A. a", "B. the", "C. an", "D. no article"] },
+        { q: "15. He has to go to ______ bed early because he has a big match tomorrow.", opts: ["A. a", "B. the", "C. an", "D. no article"] },
+        { q: "16. The two captains shook hands with ______ before the match.", opts: ["A. each other", "B. another", "C. other", "D. others"] },
+        { q: "17. I don't like this board game. Let's play ______ one.", opts: ["A. other", "B. others", "C. another", "D. each other"] },
+        { q: "18. Some people love classical music, but ______ prefer folk music.", opts: ["A. other", "B. another", "C. the other", "D. others"] },
+        { q: "19. There are two ways to get to the stadium. One is by bus and ______ is on foot.", opts: ["A. the other", "B. another", "C. others", "D. other"] },
+        { q: "20. The referee ______ the player off after the foul.", opts: ["A. sent", "B. turned", "C. took", "D. gave"] },
+        { q: "21. My brother wants to ______ a new hobby, so he is joining the chess club.", opts: ["A. take off", "B. take up", "C. take down", "D. take in"] },
+        { q: "22. Mai is very keen ______ folk music; she listens to it every day.", opts: ["A. on", "B. in", "C. at", "D. with"] },
+        { q: "23. She handed ______ her assignment before the deadline.", opts: ["A. up", "B. out", "C. in", "D. off"] },
+        { q: "24. Please ______ of the hotel before noon on the day you leave.", opts: ["A. check in", "B. check out", "C. check on", "D. check up"] },
+        { q: "25. We arrived ______ Da Nang airport at noon.", opts: ["A. in", "B. on", "C. to", "D. at"] }
+    ];
+
+    const s2p1Data = [
+        { q: "1.", opts: ["A. voyage", "B. travel", "C. trip", "D. route"] },
+        { q: "2.", opts: ["A. set", "B. put", "C. came", "D. turned"] },
+        { q: "3.", opts: ["A. arrived", "B. checked", "C. signed", "D. handed"] },
+        { q: "4.", opts: ["A. fares", "B. tickets", "C. routes", "D. luggage"] },
+        { q: "5.", opts: ["A. cancelled", "B. delayed", "C. departed", "D. arrived"] },
+        { q: "6.", opts: ["A. set", "B. got", "C. took", "D. came"] },
+        { q: "7.", opts: ["A. flight", "B. route", "C. voyage", "D. destination"] },
+        { q: "8.", opts: ["A. get", "B. take", "C. pick", "D. see"] },
+        { q: "9.", opts: ["A. accommodation", "B. destination", "C. arrival", "D. departure"] },
+        { q: "10.", opts: ["A. abroad", "B. commute", "C. voyage", "D. sightseeing"] }
+    ];
+
+    function renderMCQ(containerId, data, namePrefix, startIndex) {
+        let html = '';
+        const letters = ['A', 'B', 'C', 'D'];
+        data.forEach((item, index) => {
+            let num = startIndex + index;
+            html += `<div class="question"><b>${item.q}</b><div class="options">`;
+            item.opts.forEach((opt, i) => {
+                html += `<label><input type="radio" name="${namePrefix}_${num}" value="${letters[i]}"> ${opt}</label>`;
+            });
+            html += `</div></div>`;
+        });
+        document.getElementById(containerId).innerHTML = html;
+    }
+
+    renderMCQ('s1p1-container', s1p1Data, 's1p1', 1);
+    renderMCQ('s2p1-container', s2p1Data, 's2p1', 1);
+
+    // --- Answer Keys ---
+    const answers = {
+        s1p1_1: "D", s1p1_2: "A", s1p1_3: "B", s1p1_4: "A", s1p1_5: "C", s1p1_6: "A", s1p1_7: "C", s1p1_8: "B", s1p1_9: "C", s1p1_10: "D",
+        s1p1_11: "B", s1p1_12: "B", s1p1_13: "C", s1p1_14: "B", s1p1_15: "D", s1p1_16: "A", s1p1_17: "C", s1p1_18: "D", s1p1_19: "A", s1p1_20: "A",
+        s1p1_21: "B", s1p1_22: "A", s1p1_23: "C", s1p1_24: "B", s1p1_25: "D",
+        s1p2_26: "athletic", s1p2_27: "successful", s1p2_28: "entertainment", s1p2_29: "musical", s1p2_30: "children",
+        s1p2_31: "organisers", s1p2_32: "playful", s1p2_33: "seriously", s1p2_34: "heroic", s1p2_35: "exciting",
+        s1p3_36: "take an exam", s1p3_37: "made progress", s1p3_38: "done research", 
+        s1p3_39: ["learned the poem by heart", "learnt the poem by heart"], 
+        s1p3_40: "hand in the homework", s1p3_41: "catch up with the others", s1p3_42: "look up the word in a dictionary",
+        s1p3_43: "drop out of school", s1p3_44: "set off at dawn", s1p3_45: "checked in at the hotel",
+        s2p1_1: "C", s2p1_2: "A", s2p1_3: "B", s2p1_4: "D", s2p1_5: "B", s2p1_6: "C", s2p1_7: "A", s2p1_8: "C", s2p1_9: "A", s2p1_10: "D",
+        s2p2_11: "about", s2p2_12: "up", s2p2_13: "a", s2p2_14: "the", s2p2_15: "a", s2p2_16: "at", s2p2_17: "another", s2p2_18: "each", s2p2_19: "others", s2p2_20: "in",
+        s2p3_21: "ii", s2p3_22: "v", s2p3_23: "i", s2p3_24: "iii", s2p3_25: "vi",
+        s2p3_26: "F", s2p3_27: "T", s2p3_28: "NG", s2p3_29: "F", s2p3_30: "T",
+        s2p4_31: "A", s2p4_32: "D", s2p4_33: "B", s2p4_34: "C", s2p4_35: "B", s2p4_36: "C", s2p4_37: "A", s2p4_38: "D", s2p4_39: "A", s2p4_40: "D",
+        s3p1_1: ["gave each other their notebooks", "gave notebooks to each other"],
+        s3p1_2: ["sent the player off after the foul", "sent the player off the field after the foul"],
+        s3p1_3: "misread the rules, so the team lost",
+        s3p1_4: "unable to finish the assignment before the deadline",
+        s3p1_5: "the other is a girl",
+        s3p2_6: ["am keen on", "am very keen on"],
+        s3p2_7: ["hand in the assignment", "hand in our assignment", "hand the assignment in"],
+        s3p2_8: "took part in",
+        s3p2_9: "in time for",
+        s3p2_10: ["turn the music down", "turn down the music"]
+    };
+
+    // --- Anti Cheat & Timer ---
+    let time = 100 * 60;
+    let cheatCount = 0;
+    let isFinished = false;
+    const timerEl = document.getElementById('timer');
+
+    // Chống copy paste, F12
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden && !isFinished) {
+            cheatCount++;
+            document.getElementById('strike-counter').innerText = `Cảnh báo thoát tab: ${cheatCount}/3`;
+            if (cheatCount >= 3) {
+                submitExam(true);
+            } else {
+                alert(`CẢNH BÁO LẦN ${cheatCount}/3: Bạn vừa chuyển tab hoặc ẩn trình duyệt. Hành động này bị nghiêm cấm. Bài thi sẽ bị khóa nếu vi phạm 3 lần!`);
+            }
+        }
+    });
+
+    setInterval(() => {
+        if (isFinished) return;
+        time--;
+        let m = Math.floor(time / 60);
+        let s = time % 60;
+        timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        
+        if (time <= 300) timerEl.classList.add('danger'); // Nhấp nháy 5 phút cuối
+        if (time <= 0) {
+            alert("Đã hết 100 phút làm bài! Hệ thống sẽ tự động nộp bài.");
+            submitExam(false);
+        }
+    }, 1000);
+
+    // --- Scoring Logic ---
+    function normalize(str) {
+        if(!str) return "";
+        return str.toString().toLowerCase().replace(/[.,;]$/, '').trim().replace(/\s+/g, ' ');
+    }
+
+    function checkAnswer(key, userValue) {
+        let correctAns = answers[key];
+        let normalizedUser = normalize(userValue);
+        if (Array.isArray(correctAns)) {
+            return correctAns.some(ans => normalize(ans) === normalizedUser);
+        } else {
+            return normalize(correctAns) === normalizedUser;
+        }
+    }
+
+    function submitExam(isCheating) {
+        if (isFinished) return;
+        isFinished = true;
+        
+        let totalScore = 0;
+        let form = document.getElementById('quiz-form');
+        
+        // Chấm Sec I (45 câu x 1) + Sec II (40 câu x 1)
+        for(let key in answers) {
+            let points = key.startsWith('s3') ? 1.5 : 1.0;
+            
+            // Radio buttons
+            if(key.includes('p1_') && !key.startsWith('s3')) {
+                let checked = form.querySelector(`input[name="${key}"]:checked`);
+                if(checked && checkAnswer(key, checked.value)) totalScore += points;
+            } 
+            // Text inputs
+            else {
+                let input = form.querySelector(`input[name="${key}"]`);
+                if(input && checkAnswer(key, input.value)) totalScore += points;
+            }
+        }
+
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'flex';
+        
+        if (isCheating) {
+            document.getElementById('end-title').innerText = "🚫 BỊ KHÓA BÀI 🚫";
+            document.getElementById('end-title').classList.add('locked-title');
+            document.getElementById('end-message').innerText = "Bạn đã vi phạm quy chế thi (chuyển tab quá 3 lần). Hệ thống đã tự động khóa bài của bạn.";
+        }
+        
+        document.getElementById('final-score').innerText = `${totalScore} / 100`;
+    }
+</script>
+
+</body>
+</html>
